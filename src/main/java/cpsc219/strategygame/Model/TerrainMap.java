@@ -16,7 +16,7 @@ public class TerrainMap {
     // constructor
     public TerrainMap() {
         // generate map
-        String mapName = "map1.txt";
+        String mapName = "map2.txt";
 
         terrainMatrix = convertToTerrainMatrix(mapName);
     }

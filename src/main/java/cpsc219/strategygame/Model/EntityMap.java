@@ -1,6 +1,7 @@
 package cpsc219.strategygame.Model;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class EntityMap {
     // named constants
@@ -23,7 +24,7 @@ public class EntityMap {
         entityMatrix = convertToEntityMatrix(terrainMap);
 
         //DEBUG
-        placeKnight(1, 1);
+        randPos();
         //DEBUG
         DEBUG_DISPLAY();
     }
@@ -51,6 +52,27 @@ public class EntityMap {
         }
 
         return eMatrix;
+    }
+
+    // TEMP function, will be replaced
+    // random entity position(
+    private void randPos() {
+        Random rand = new Random();
+        int[] randPos = new int[2];
+        boolean isGenerated = false;
+        while(!isGenerated) {
+            randPos = new int[]{rand.nextInt(0, mapSize[0]), rand.nextInt(0, mapSize[1])};
+            Entity entityAtPos = getEntityAtPos(randPos);
+
+            if (entityAtPos == null) {
+                isGenerated = true;
+                continue;
+            }
+
+            isGenerated = false;
+        }
+
+        placeKnight(randPos[0], randPos[1]);
     }
 
     // getters
@@ -89,7 +111,7 @@ public class EntityMap {
         for (Entity[] row : entityMatrix) {
             for (Entity e : row) {
                 if (e == null) System.out.print(". ");
-                else if (e instanceof IMPASSABLE) System.out.println("X ");
+                else if (e instanceof IMPASSABLE) System.out.print("X ");
                 else if (e instanceof Knight) System.out.print("P ");
             }
             System.out.println();
