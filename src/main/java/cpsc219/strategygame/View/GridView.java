@@ -1,7 +1,6 @@
 package cpsc219.strategygame.View;
 
-import cpsc219.strategygame.Model.TerrainMap;
-import cpsc219.strategygame.Model.Tile;
+import cpsc219.strategygame.Model.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -50,5 +49,31 @@ public class GridView extends StackPane {
 
             }
         }
+    }
+
+    // draw entity map
+    public void drawEntities(EntityMap entityMap) {
+        // clear first
+        gcEntity.clearRect(0, 0, 2000, 2000);
+
+        int[] mapSize = entityMap.getMapSize();
+
+        for (int y = 0; y < mapSize[0]; y++) {
+            for (int x = 0; x < mapSize[1]; x++) {
+                Entity entity = entityMap.getEntityAtPos(y, x);
+
+                // null check and IMPASSABLE
+                if ((entity == null) || (entity instanceof IMPASSABLE)) {
+                    continue;
+                }
+
+                // get image
+                Image entityTexture = new Image(GridView.class.getResourceAsStream("/cpsc219/strategygame/textures/" + entity.getTextureName()));
+
+                // draw image
+                gcEntity.drawImage(entityTexture, x * width, y * height, width, height);
+            }
+        }
+
     }
 }

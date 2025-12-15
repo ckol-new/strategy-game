@@ -1,8 +1,9 @@
 package cpsc219.strategygame.Model;
 
 public enum MovementType {
-    ORTHOGONAL("ortho"),
-    DIAGNOAL("diago");
+    ORTHOGONAL("orthogonal"),
+    DIAGNOAL("diagonal"),
+    IMMOBILE("immobile");
 
     final String type;
     MovementType(String type) {

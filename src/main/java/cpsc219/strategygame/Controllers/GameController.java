@@ -1,6 +1,7 @@
 package cpsc219.strategygame.Controllers;
 
 import cpsc219.strategygame.Game;
+import cpsc219.strategygame.Model.EntityMap;
 import cpsc219.strategygame.Model.TerrainMap;
 import cpsc219.strategygame.View.GridView;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ public class GameController {
 
     //DEBUG
     TerrainMap tm = new TerrainMap();
+    // DEBUG
+    EntityMap em = new EntityMap(tm);
 
     // FXML field
     @FXML
@@ -57,6 +60,7 @@ public class GameController {
     public void setUIhandlers() {
         returnMenuItem.setOnAction(evt -> quitToMainMenu());
         testTerrainDraw.setOnAction(evt -> testDrawTerrain());
+        testEntityDraw.setOnAction(evt -> testDrawEntity());
     }
 
     // quit to main menu
@@ -68,6 +72,11 @@ public class GameController {
     // test draw terrain
     private void testDrawTerrain() {
         gridView.drawTerrain(tm);
+    }
+    //DEBUG
+    // test draw entities
+    private void testDrawEntity() {
+        gridView.drawEntities(em);
     }
 
 
