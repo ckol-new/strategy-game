@@ -6,19 +6,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 public class GridView extends StackPane {
     // static fields
-    int width = 40;
-    int height = 40;
+    int tileWidth = 40;
+    int tileHeight = 40;
+    int width = 400;
+    int height = 400;
 
     // fields
-    Canvas terrainCanvas = new Canvas(400, 400);
-    Canvas entityCanvas = new Canvas(400, 400);
-    Canvas effectsCanvas = new Canvas(400, 400);
+    Canvas terrainCanvas = new Canvas(width, height);
+    Canvas entityCanvas = new Canvas(width, height);
+    Canvas effectsCanvas = new Canvas(width, height);
     GraphicsContext gcTerrain = terrainCanvas.getGraphicsContext2D();
     GraphicsContext gcEntity = entityCanvas.getGraphicsContext2D();
     GraphicsContext gcEffects = effectsCanvas.getGraphicsContext2D();
@@ -31,7 +29,7 @@ public class GridView extends StackPane {
     // draw terrain map
     public void drawTerrain(TerrainMap terrainMap) {
         // clear first
-        gcTerrain.clearRect(0, 0, 2000, 2000);
+        gcTerrain.clearRect(0, 0, width, height);
 
         Tile[][] terrainMatrix = terrainMap.getTerrainMatrix();
         int[] mapSize = terrainMap.getMapSize();
@@ -45,7 +43,7 @@ public class GridView extends StackPane {
                 Image tileImg = new Image(GridView.class.getResourceAsStream("/cpsc219/strategygame/textures/" + tile.getTextureName()));
 
                 // draw image
-                gcTerrain.drawImage(tileImg, x * width, y * height, width, height);
+                gcTerrain.drawImage(tileImg, x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 
             }
         }
@@ -54,7 +52,7 @@ public class GridView extends StackPane {
     // draw entity map
     public void drawEntities(EntityMap entityMap) {
         // clear first
-        gcEntity.clearRect(0, 0, 2000, 2000);
+        gcEntity.clearRect(0, 0, width, height);
 
         int[] mapSize = entityMap.getMapSize();
 
@@ -71,7 +69,7 @@ public class GridView extends StackPane {
                 Image entityTexture = new Image(GridView.class.getResourceAsStream("/cpsc219/strategygame/textures/" + entity.getTextureName()));
 
                 // draw image
-                gcEntity.drawImage(entityTexture, x * width, y * height, width, height);
+                gcEntity.drawImage(entityTexture, x * tileWidth, y * tileHeight, tileWidth, tileHeight);
             }
         }
 
