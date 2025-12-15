@@ -2,6 +2,7 @@ package cpsc219.strategygame;
 
 import cpsc219.strategygame.Controllers.GameController;
 import cpsc219.strategygame.Controllers.MenuController;
+import cpsc219.strategygame.Model.TerrainMap;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -68,6 +69,8 @@ public class Game extends Application {
         // set stage
         primaryStage.setScene(gameScene);
         primaryStage.show();
+
+        TerrainMap tm = new TerrainMap();
     }
 
     // quit to menu (switch scene)
