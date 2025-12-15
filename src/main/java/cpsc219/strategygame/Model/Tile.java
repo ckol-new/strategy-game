@@ -16,12 +16,14 @@ public enum Tile {
     static final int NORMAL_MOVEMENT = 2;
     static final int SLOW_MOVEMENT = 1;
     static final int NO_MOVEMENT = 0;
+    String textureName;
     Path texturePath;
     final String SYMBOL;
 
     private Tile(boolean isWalkable, int movementType, String textureName, String symbol) {
         IS_WALKABLE = isWalkable;
         MOVEMENT_TYPE = movementType;
+        this.textureName = textureName;
         texturePath = convertToPath(textureName);
         SYMBOL = symbol;
     }
@@ -41,6 +43,7 @@ public enum Tile {
 
 
     // getters
+    public String getTextureName() { return textureName; }
     public Path getTexturePath() { return texturePath; }
     public int getMovementType() { return MOVEMENT_TYPE; }
     public boolean isWalkable() { return IS_WALKABLE; }

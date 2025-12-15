@@ -84,6 +84,12 @@ public class TerrainMap {
         mapSize = intSize;
     }
 
+    // getters
+    public Tile[][] getTerrainMatrix() {
+        return terrainMatrix;
+    }
+    public int[] getMapSize() { return mapSize; }
+
     //DEBUG display
     public void DEBUG_DISPLAY() {
         for (int i = 0; i < mapSize[0]; i++) {
