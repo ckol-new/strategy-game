@@ -3,6 +3,7 @@ package cpsc219.strategygame;
 import cpsc219.strategygame.Controllers.GameController;
 import cpsc219.strategygame.Controllers.MenuController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -92,5 +93,10 @@ public class Game extends Application {
         // set stage
         primaryStage.setScene(menuScene);
         primaryStage.show();
+    }
+
+    // close game
+    public void closeGame() {
+        Platform.exit();
     }
 }

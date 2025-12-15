@@ -30,7 +30,7 @@ public class MenuController {
     public void initialize() {
         setUItext();
         setUIhandlers();
-    }
+}
 
     // set ui
     private void setUItext() {
@@ -41,11 +41,16 @@ public class MenuController {
     }
     private void setUIhandlers() {
         playButton.setOnAction(evt -> playGame());
+        quitButton.setOnAction(evt -> quitGame());
     }
 
     // play game event handler
     private void playGame() {
         gameInstance.setSceneGame(); // switch scenes to game
+    }
+    // quit game -> close window
+    private void quitGame() {
+        gameInstance.closeGame();
     }
 
     // get instance of game controller
