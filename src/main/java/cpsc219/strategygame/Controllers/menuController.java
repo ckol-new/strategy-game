@@ -33,5 +33,9 @@ public class menuController {
         optionsButton.setText("OPTIONS");
         quitButton.setText("QUIT");
     }
+    private void setUIhandlers() {
+
+    }
+
 
 }
