@@ -36,11 +36,14 @@ public class GameController {
     public void setUIhandlers() {
         returnMenuItem.setOnAction(evt -> quitToMainMenu());
     }
-
     // quit to main menu
     private void quitToMainMenu() {
         gameInstance.setSceneMenu();
     }
+
+
+
+
 
     // set instance of game
     public void setGameInstance(Game game) {
