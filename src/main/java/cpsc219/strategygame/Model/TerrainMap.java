@@ -19,8 +19,6 @@ public class TerrainMap {
         String mapName = "map1.txt";
 
         terrainMatrix = convertToTerrainMatrix(mapName);
-
-        DEBUG_DISPLAY();
     }
 
     // convert map file to terrain matrix
