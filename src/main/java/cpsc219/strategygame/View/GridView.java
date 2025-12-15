@@ -1,13 +1,19 @@
 package cpsc219.strategygame.View;
 
 import cpsc219.strategygame.Model.*;
+import javafx.animation.PauseTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.InputEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 public class GridView extends StackPane {
     // static fields
+    static final String selectImageFileName = "select.png";
+
     int tileWidth = 40;
     int tileHeight = 40;
     int width = 400;
@@ -21,9 +27,56 @@ public class GridView extends StackPane {
     GraphicsContext gcEntity = entityCanvas.getGraphicsContext2D();
     GraphicsContext gcEffects = effectsCanvas.getGraphicsContext2D();
 
+    Pane inputOverlay = new Pane();
+
+
     // constructor
     public GridView() {
-        this.getChildren().addAll(terrainCanvas, entityCanvas, effectsCanvas);
+        setInputOverlay();
+        setHandlers();
+
+        this.getChildren().addAll(terrainCanvas, entityCanvas, effectsCanvas, inputOverlay);
+    }
+
+    // set input overlay positon
+    private void setInputOverlay() {
+        // pane does is not by default resizeable, i need to bind it to grid view with/height
+        inputOverlay.prefWidthProperty().bind(this.widthProperty());
+        inputOverlay.prefHeightProperty().bind(this.heightProperty());
+        inputOverlay.setPickOnBounds(true);
+        inputOverlay.setMouseTransparent(false);
+    }
+
+    // add event handlers to inputOverlay
+    private void setHandlers() {
+        inputOverlay.setOnMouseClicked(evt -> {
+            System.out.println(evt.getSource().getClass());
+
+            int gridPosX = (int) (evt.getX() / tileWidth);
+            int gridPosY = (int) (evt.getY() / tileHeight);
+
+            System.out.println(gridPosY + " " + gridPosX);
+        });
+
+        /*
+
+        //TODO change how highlights work
+        // highlight square (yellow for now)
+        inputOverlay.setOnMouseMoved(evt -> {
+            int gridPosX = (int) (evt.getX() / tileWidth);
+            int gridPosY = (int) (evt.getY() / tileHeight);
+
+            Image selectImg = new Image(GridView.class.getResourceAsStream("/cpsc219/strategygame/textures/select.png"));
+            gcEffects.drawImage(selectImg, gridPosX * tileWidth, gridPosY * tileHeight, tileWidth, tileHeight);
+
+            PauseTransition p = new PauseTransition(Duration.millis(500));
+            p.setOnFinished(evt2 -> {
+                gcEffects.clearRect(gridPosX * tileWidth, gridPosY * tileHeight, tileWidth, tileHeight);
+            });
+            p.play();
+        });
+
+         */
     }
 
     // draw terrain map

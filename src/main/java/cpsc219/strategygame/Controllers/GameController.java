@@ -48,6 +48,7 @@ public class GameController {
     }
     // set gridview
     public void setGridView() {
+        gridView.setPrefSize(400, 400);
         root.setCenter(gridView);
     }
 
