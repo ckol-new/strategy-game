@@ -69,5 +69,28 @@ public class Game extends Application {
         primaryStage.show();
     }
 
+    // quit to menu (switch scene)
+    public void setSceneMenu() {
+        FXMLLoader loader;
+        Scene menuScene;
+        MenuController menuController;
+        Parent root;
 
+        // load scene
+        try {
+            loader = new FXMLLoader(Game.class.getResource("/cpsc219/strategygame/menu.fxml"));
+            root = loader.load();
+            menuController = loader.getController();
+            menuScene = new Scene(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // pass instance of Game.java to GameController
+        menuController.setGameInstance(this);
+
+        // set stage
+        primaryStage.setScene(menuScene);
+        primaryStage.show();
+    }
 }
