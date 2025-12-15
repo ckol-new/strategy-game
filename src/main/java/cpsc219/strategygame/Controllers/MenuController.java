@@ -1,11 +1,16 @@
 package cpsc219.strategygame.Controllers;
 
+import cpsc219.strategygame.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class menuController {
+public class MenuController {
+    // fields
+    Game gameInstance;
+
+    // fxml fields
     @FXML
     VBox menuVBox;
     @FXML
@@ -18,12 +23,13 @@ public class menuController {
     Button quitButton;
 
     // constructor
-    public menuController() {}
+    public MenuController() {}
 
     // initialize (after FXML field injection via reflection)
     @FXML
     public void initialize() {
         setUItext();
+        setUIhandlers();
     }
 
     // set ui
@@ -34,8 +40,17 @@ public class menuController {
         quitButton.setText("QUIT");
     }
     private void setUIhandlers() {
-
+        playButton.setOnAction(evt -> playGame());
     }
 
+    // play game event handler
+    private void playGame() {
+        gameInstance.setSceneGame(); // switch scenes to game
+    }
+
+    // get instance of game controller
+    public void setGameInstance(Game game) {
+        gameInstance = game;
+    }
 
 }
