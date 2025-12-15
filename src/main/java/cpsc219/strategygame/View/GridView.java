@@ -127,4 +127,14 @@ public class GridView extends StackPane {
         }
 
     }
+
+    // set size
+    public void setSize(int width, int height) {
+        //TODO change this with something better
+        this.width = width;
+        this.height = height;
+        tileWidth = (int) width / 10;
+        tileHeight = (int) height / 10;
+
+    }
 }
